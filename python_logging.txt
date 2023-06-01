@@ -1,0 +1,47 @@
+Commands:
+
+1. import logging 
+This imports the python log module 
+
+2. logging.basicConfig(level=logging.DEBUG)
+This sets the default level for logging
+logging.DEBUG is just a constant. NOT the same as logging.debug
+
+3. logging.basicConfig(filename='...', level=logging.DEBUG)
+Instead of outputting the log messages to the console, this command redirects the output to the the file specified by filename
+When you log to a file, the file will keep the old log statements, and just adds the newstatements in. Allow us to see our logged information overtime and over multiple runs
+
+4. logging.basicConfig(filename='...', level=logging.DEBUG, format='%(levelname)s:%(message)s'))
+This allows you to format the output
+
+5. logging.info('...')
+Logs the output at info level 
+logging.debug, logging.warning, logging.error
+
+
+
+
+
+
+
+
+Notes:
+
+logging levels 
+- allows us to specify exactly what we want to log by separating these into categories. There are 5 standard logging levels:
+
+debug, info, warning, error, and critical 
+
+DEBUG: Detailed information, typically of interest only when diagnosing problems 
+
+INFO: Confirmation that things are working as expected 
+
+WARNING: An indication that something unexpected happened, or indicative of some problem in the near future (e.g. 'disk space low'). The software is still working as expected 
+
+ERROR: Due to a more serious problem, the software has not been able to perform some function 
+
+CRITICAL: A serious error, indicating that the program itself may be unable to continue running 
+
+Default level is set to warning. Captures anything a warning or above (ERROR and CRITICAL)
+
+
