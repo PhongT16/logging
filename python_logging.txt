@@ -11,17 +11,14 @@ logging.DEBUG is just a constant. NOT the same as logging.debug
 Instead of outputting the log messages to the console, this command redirects the output to the the file specified by filename
 When you log to a file, the file will keep the old log statements, and just adds the newstatements in. Allow us to see our logged information overtime and over multiple runs
 
-4. logging.basicConfig(filename='...', level=logging.DEBUG, format='%(levelname)s:%(message)s'))
+4. logging.basicConfig(filename='logging-output.txt', level=logging.INFO, format='%(filename)s:%(levelname)s:%(message)s')
 This allows you to format the output
 
 5. logging.info('...')
 Logs the output at info level 
-logging.debug, logging.warning, logging.error
+logging.debug(), logging.warning(), logging.error()
 
-
-
-
-
+Commands 1 to 5 are for root logger
 
 
 
@@ -44,4 +41,11 @@ CRITICAL: A serious error, indicating that the program itself may be unable to c
 
 Default level is set to warning. Captures anything a warning or above (ERROR and CRITICAL)
 
+- If not specified, the default logger is the root logger. It is a good practice to configure specific loggers that can be configured seperately
+
+- You would want to have specific loggers because you want to be able to configure each one of them to a specific need 
+
+- If you were to just use the root logger, and you import another library/module that also uses the root logger. Then the basicConfig you 
+set won't be able to override the basciConfig from that import library/module. Instead, the log statements you have will be printed according 
+to the root logger that was configured in imported library/module.
 
