@@ -20,7 +20,22 @@ logging.debug(), logging.warning(), logging.error()
 
 Commands 1 to 5 are for root logger
 
+# Custom logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
+formater = logging.Formatter('%(name)s:%(filename)s:%(levelname)s:%(message)s')
+
+file_handler = logging.FileHandler('logging-out.txt')
+file_handler.setFormatter(formater)
+file_handler.setLevel(logging.DEBUG)
+
+logger.addHandler(file_handler)
+
+- You have to set the logger level or else it will be defaulted to logger.WARNING
+- You don't have to set the file_handler level unless you want to
+- If you decide to set both the logger and file_handler levels, then the log message has to satisfy both conditions 
+in order to go through
 
 Notes:
 
@@ -49,3 +64,6 @@ Default level is set to warning. Captures anything a warning or above (ERROR and
 set won't be able to override the basciConfig from that import library/module. Instead, the log statements you have will be printed according 
 to the root logger that was configured in imported library/module.
 
+- Let's say you have two different handlers: FileHandler and StreamHandler. If neither of those have setLevels, the levels will go according to the level you 
+set for the logger object. In that case, the logs will be printed to the specified file and also to the specified output stream. 
+However, if FileHandler and StreamHandler are set, then the loggging messages will have to satisfy their levels (in respect to their specific handler) in addition to the logger's set level.
